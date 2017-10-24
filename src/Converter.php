@@ -15,13 +15,13 @@ class Converter
         $this->filename=$filename;
     }
 
-    public function convert(\SplFileObject $file, string $outputFormat, string $outputFilePath)
+    public function convert(\SplFileObject $file, string $outputFormat, string $outputFilePath):void
     {
         $createrInitialFile= new FactoryFile(pathinfo($this->filename, PATHINFO_EXTENSION));
         $fileConverter=$createrInitialFile->makeExeplar();
-        $fileConverter->parseFile($file);
+        $data=$fileConverter->parseFile($file);
         $createrFinalFile= new FactoryFile($outputFormat);
         $fileWriter=$createrFinalFile->makeExeplar();
-        $fileWriter->writeToFile($outputFilePath);
+        $fileWriter->writeToFile($outputFilePath, $data);
     }
 }

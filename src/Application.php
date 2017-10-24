@@ -6,7 +6,7 @@ namespace FileConverter;
 
 class Application
 {
-    public function run(string $filename, string $outputFormat, $outputFilePath)
+    public function run(string $filename, string $outputFormat, $outputFilePath):void
     {
         $converter = new Converter($filename);
 

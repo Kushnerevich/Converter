@@ -15,7 +15,7 @@ class ConverterTest extends TestCase
     {
         $outputFilePath = $this->workspace . '/output.json';
         $file = new \SplFileObject(__DIR__ . '/test.json');
-        $converter = $this->getConverter(__DIR__);
+        $converter = $this->getConverter(__DIR__.'/test.json');
 
         $converter->convert($file, 'json', $outputFilePath);
 
@@ -29,7 +29,7 @@ class ConverterTest extends TestCase
     {
         $outputFilePath = $this->workspace . '/output.csv';
         $file = new \SplFileObject(__DIR__ . '/test.csv');
-        $converter = $this->getConverter(__DIR__);
+        $converter = $this->getConverter(__DIR__.'/test.csv');
 
         $result = $converter->convert($file, 'csv', $outputFilePath);
 
@@ -48,7 +48,7 @@ FILE
     {
         $outputFilePath = $this->workspace . '/output.json';
         $file = new \SplFileObject(__DIR__ . '/test.csv');
-        $converter = $this->getConverter(__DIR__);
+        $converter = $this->getConverter(__DIR__. '/test.csv');
 
         $converter->convert($file, 'json', $outputFilePath);
 
@@ -69,8 +69,8 @@ FILE
         @unlink($this->workspace);
     }
 
-    private function getConverter($fileName)
+    private function getConverter($myWay)
     {
-        return new Converter($fileName);
+        return new Converter($myWay);
     }
 }

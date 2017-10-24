@@ -22,21 +22,20 @@ class FactoryFile
         $this->fileExtension=$fileExtension;
     }
 
-    public function makeExeplar()
+    public function makeExeplar():object
     {
         switch ($this->fileExtension) {
-            case "csv":
+            case 'csv':
                 return new CsvFileConverter();
                 break;
-            case "json":
+            case 'json':
                 return new JsonFileConverter();
                 break;
-            case "xml":
+            case 'xml':
                 return new XmlFileConverter();
                 break;
             default:
-                echo "~~~~~~~~~~~~~~~~~~~".$this->fileExtension."~~~~~~~~~~~~~~~~";
-                return null;
+                throw new \Exception('Нет файла данного формата');
                 break;
         }
     }

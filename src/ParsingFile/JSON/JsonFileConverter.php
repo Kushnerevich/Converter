@@ -12,16 +12,16 @@ use FileConverter\AbstractClass\FileCheker;
 
 class JsonFileConverter extends FileCheker
 {
-    public function parseFile(\SplFileObject $file)
+    public function parseFile(\SplFileObject $file):array
     {
-        static::$data[]=json_decode((string)$file,true);
-
+        $this->data=json_decode((string)$file, true);
+        return $this->data;
     }
 
-    public function writeToFile (string $outputFilePath)
+    public function writeToFile(string $outputFilePath,array $data):void
     {
-        $file = fopen("$outputFilePath",  "w");
-        fwrite($file, json_encode(static::$data));
+        $file = fopen("$outputFilePath",  'w');
+        fwrite($file, json_encode($data));
         fclose($file);
     }
 }

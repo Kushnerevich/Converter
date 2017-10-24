@@ -11,22 +11,19 @@ use FileConverter\AbstractClass\FileCheker;
 
 class CsvFileConverter extends FileCheker
 {
-    public function parseFile(\SplFileObject $file)
+    public function parseFile(\SplFileObject $file):array
     {
-        while(!$file->eof())
-        {
-            static::$data[] = $file->fgetcsv();
+        while (!$file->eof()) {
+            $this->data[] = $file->fgetcsv();
         }
+        return $this->data;
     }
 
-    public  function writeToFile (string $outputFilePath)
+    public  function writeToFile(string $outputFilePath,array $data):void
     {
         $file = fopen("$outputFilePath",  "w");
-        foreach (static::$data as $value)
-        {
-           echo gettype($value);
+        foreach ($data as $value) {
             fputcsv($file, $value);
-
         }
         fclose($file);
     }

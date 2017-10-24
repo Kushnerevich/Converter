@@ -12,5 +12,5 @@ abstract class FileCheker
 {
     public $data;
     protected abstract function parseFile(\SplFileObject $file);
-    protected abstract function writeToFile(string $outputFilePath);
+    protected abstract function writeToFile(string $outputFilePath,array $data);
 }
